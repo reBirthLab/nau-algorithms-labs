@@ -27,6 +27,36 @@ package com.rebirthlab.naualgorithms01;
  *
  * @author Anastasiy Tovstik <anastasiy.tovstik@gmail.com>
  */
-public class NewClass {
+public class Element {
+
+    private String data;
+    private Element previous, next;
+
+    public Element(String data) {
+        this.data = data;
+    }
     
+    public String getData(){
+        return data;
+    }
+    
+    public Element getPreviousElement(){
+        return previous;
+    }
+    
+    public Element getNextElement(){
+        return next;
+    }
+    
+    public void setData(String data){
+        this.data = data;
+    }
+    
+    public void setPreviousElement(Element previous){
+        this.previous = previous;
+    }
+    
+    public void setNextElement(Element next){
+        this.next = next;
+    }
 }

@@ -23,18 +23,56 @@
  */
 package com.rebirthlab.naualgorithms01;
 
+import java.util.Random;
+
 /**
  *
  * @author Anastasiy Tovstik <anastasiy.tovstik@gmail.com>
  */
 public class Main {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        System.out.println("Hello World!");
-        
+    private static final Random rand = new Random();
+
+    public static Integer randInt(int min, int max) {
+
+        return rand.nextInt((max - min) + 1) + min;
     }
-    
+
+    // Variant 5
+    public static void main(String[] args) {
+        int numberOfElements = 12;
+
+        List list = new List(numberOfElements);
+
+        for (int i = 0; i < numberOfElements; i++) {
+            list.add(randInt(-100, 100));
+        }
+
+        System.out.println("Original List:");
+        list.print();
+
+        DoublyLinkedList linkedList = new DoublyLinkedList();
+
+        for (int i = 0; i < numberOfElements; i++) {
+            Integer currentElement = list.getElement(i);
+            if (currentElement != null && currentElement.longValue() % 2 == 0) {
+                linkedList.setTailElement(new Element(currentElement.toString()));
+                list.removeByIndex(i);
+                --i;
+            }
+        }
+
+        System.out.println("\nModified List:");
+        list.print();
+
+        System.out.println("\nLinked List:");
+        linkedList.print();
+        
+        linkedList.incrementalSort();
+
+        System.out.println("\nSorted Linked List:");
+        linkedList.print();
+
+    }
+
 }
