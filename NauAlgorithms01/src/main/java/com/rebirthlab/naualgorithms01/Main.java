@@ -34,7 +34,6 @@ public class Main {
     private static final Random rand = new Random();
 
     public static Integer randInt(int min, int max) {
-
         return rand.nextInt((max - min) + 1) + min;
     }
 
@@ -67,7 +66,7 @@ public class Main {
 
         System.out.println("\nLinked List:");
         linkedList.print();
-        
+
         linkedList.incrementalSort();
 
         System.out.println("\nSorted Linked List:");

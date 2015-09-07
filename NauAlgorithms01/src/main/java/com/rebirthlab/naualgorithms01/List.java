@@ -71,15 +71,14 @@ public class List {
 
         if (index <= lastElementIdx) {
             Integer deletedElement = array[index];
-            
+
             for (int i = index; i < lastElementIdx; i++) {
                 array[i] = array[i + 1];
-                
             }
-          array[lastElementIdx] = null;
-                --lastElementIdx;
             
-            
+            array[lastElementIdx] = null;
+            --lastElementIdx;
+
             return deletedElement;
         } else {
             return null;

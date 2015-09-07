@@ -106,7 +106,6 @@ public class DoublyLinkedList {
         }
 
         return element.getData();
-
     }
 
     public String removeByValue(String value) {
@@ -160,7 +159,6 @@ public class DoublyLinkedList {
                 currentElement = currentElement.getNextElement();
             }
         }
-
         return true;
     }
 
