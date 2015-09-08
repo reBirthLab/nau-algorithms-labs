@@ -51,24 +51,27 @@ public class List {
     public Integer removeByValue(Integer element) {
         if (isEmpty()) {
             return null;
-        } else {
-            for (int i = 0; i <= lastElementIdx; i++) {
-                if (Objects.equals(array[i], element)) {
-                    for (int j = i; j <= lastElementIdx; j++) {
-                        array[j] = array[j + 1];
-                    }
-                    --lastElementIdx;
-                }
-            }
-            return element;
         }
+
+        Integer deletedElement = null;
+        
+        for (int i = 0; i <= lastElementIdx; i++) {
+            if (Objects.equals(array[i], element)) {
+                for (int j = i; j <= lastElementIdx; j++) {
+                    array[j] = array[j + 1];
+                }
+                --lastElementIdx;
+                deletedElement = element;
+            }
+        }
+        return deletedElement;
     }
 
     public Integer removeByIndex(int index) {
         if (isEmpty()) {
             return null;
         }
-
+        
         if (index <= lastElementIdx) {
             Integer deletedElement = array[index];
 
@@ -80,7 +83,7 @@ public class List {
             --lastElementIdx;
 
             return deletedElement;
-        } else {
+        } else {          
             return null;
         }
     }

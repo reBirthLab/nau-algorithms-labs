@@ -57,8 +57,8 @@ public class DoublyLinkedList {
             insertAfter(tail, newElement);
         }
     }
-    
-    public boolean isEmpty(){
+
+    public boolean isEmpty() {
         return head == null;
     }
 
@@ -88,28 +88,8 @@ public class DoublyLinkedList {
         element.setNextElement(newElement);
     }
 
-    public String remove(Element element) {
-        if (isEmpty()) {
-            return null;
-        }
-
-        if (element.getPreviousElement() == null) {
-            head = element.getNextElement();
-        } else {
-            element.getPreviousElement().setNextElement(element.getNextElement());
-        }
-
-        if (element.getNextElement() == null) {
-            tail = element.getPreviousElement();
-        } else {
-            element.getNextElement().setPreviousElement(element.getPreviousElement());
-        }
-
-        return element.getData();
-    }
-
     public String removeByValue(String value) {
-               
+
         if (isEmpty() || !isInteger(value, 10)) {
             return null;
         }
@@ -120,13 +100,18 @@ public class DoublyLinkedList {
         while (currentElement != null) {
             if (currentElement.getData().equals(value)) {
                 remove(currentElement);
-                currentElement = currentElement.getPreviousElement();
+                currentElement = head;
                 ++counter;
             }
             currentElement = currentElement.getNextElement();
         }
 
-        return "Element " + value + " has been deleted " + counter + " times.";
+        if (counter != 0) {
+            System.out.println("Element " + value + " has been deleted " + counter + " times.");
+            return value;
+        } else {
+            return null;
+        }
     }
 
     public void print() {
@@ -139,7 +124,7 @@ public class DoublyLinkedList {
             ++count;
         }
     }
-    
+
     public boolean incrementalSort() {
         if (isEmpty()) {
             return false;
@@ -160,6 +145,26 @@ public class DoublyLinkedList {
             }
         }
         return true;
+    }
+
+    private String remove(Element element) {
+        if (isEmpty()) {
+            return null;
+        }
+
+        if (element.getPreviousElement() == null) {
+            head = element.getNextElement();
+        } else {
+            element.getPreviousElement().setNextElement(element.getNextElement());
+        }
+
+        if (element.getNextElement() == null) {
+            tail = element.getPreviousElement();
+        } else {
+            element.getNextElement().setPreviousElement(element.getPreviousElement());
+        }
+
+        return element.getData();
     }
 
     private boolean isInteger(String s, int radix) {
