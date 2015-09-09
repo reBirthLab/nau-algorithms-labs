@@ -40,12 +40,12 @@ public class Main {
 
     // Variant 5
     public static void main(String[] args) {
-
         int size;
+        int area;
         boolean repeat = true;
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Enter Hash table size...");
+        System.out.println("Enter Hash table size.");
         do {
             System.out.print("Please enter positive number: ");
             while (!scanner.hasNextInt()) {
@@ -56,13 +56,13 @@ public class Main {
         } while (size <= 0);
 
         HashTable table = new HashTable(size);
-        
+
         System.out.println();
 
         while (repeat) {
             System.out.print("Add an object to Hash table? (Y/N) > ");
             String continueChoice = scanner.next().toUpperCase();
-            
+
             if (continueChoice.equals("Y")) {
                 int side = randInt(10, 100);
                 int x = randInt(-100, 100);
@@ -72,22 +72,31 @@ public class Main {
                 System.out.println("Object [Side: " + side + ", A(" + x + ", " + y + ")]"
                         + " was successfully added!");
                 repeat = true;
-                
+
             } else if (continueChoice.equals("N")) {
                 System.out.println();
                 repeat = false;
-                
+
             } else {
                 System.out.println("Please enter 'Y' or 'N'...");
             }
         }
 
         table.print();
+
+        System.out.println("Enter minimum area of a square that should pass.");
+        do {
+            System.out.print("Please enter positive number: ");
+            while (!scanner.hasNextInt()) {
+                System.out.print("Please enter a number: ");
+                scanner.next();
+            }
+            area = scanner.nextInt();
+        } while (area <= 0);
+
+        table.removeSquareWithAreaLessThan(area);
         
-        table.removeSquareWithAreaLessThan(2000);
-        
+        System.out.println();
         table.print();
-
     }
-
 }

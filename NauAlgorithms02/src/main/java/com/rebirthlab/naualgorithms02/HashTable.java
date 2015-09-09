@@ -57,34 +57,22 @@ public class HashTable {
         }
     }
   
-    public boolean removeSquareWithAreaLessThan(int area) {
+    public void removeSquareWithAreaLessThan(int area) {
         for (int i = 0; i < tableSize; i++) {
             if (array[i] != null) {
                 HashTableSquare currentObject = array[i];
-                if (currentObject.object.getArea() <= area && currentObject.next != null) {
-                    array[i] = array[i].next;
-                } else {
-                    array[i] = null;
-                    return true;
+                while (currentObject != null) {
+                    if (currentObject.next != null && currentObject.next.object.getArea() <= area) {
+                        removeObjectAfter(currentObject);
+                    }
+                    currentObject = currentObject.next;
                 }
-                currentObject = array[i];
-                if (currentObject.next != null){
-                    
-                    while (currentObject != null) {
-                        if (currentObject.next.object.getArea() <= area) {
-                            currentObject.next = currentObject.next.next;
-                            currentObject = array[i];
-                        }
-                        currentObject = currentObject.next;
-                    };
-                    return true;
+
+                if (array[i].object.getArea() <= area) {
+                    removeFirstObject(i);
                 }
-                
-            } else {
-                return false;
             }
         }
-        return false;
     }
 
     public void print() {
@@ -125,8 +113,21 @@ public class HashTable {
         return square.getPerimeter() % array.length;
     }
     
-    private void removeObject(HashTableSquare square){
-        
+    private boolean removeObjectAfter(HashTableSquare square) {
+        if (square.next == null) {
+            return false;
+        }
+
+        square.next = square.next.next;
+        return true;
     }
 
+    private boolean removeFirstObject(int index) {
+        if (array[index] == null) {
+            return false;
+        }
+
+        array[index] = array[index].next;
+        return true;
+    }
 }
