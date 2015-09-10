@@ -40,10 +40,6 @@ public class StudentId {
         number = RandomNamber.randInt(100, 1000);
     }
     
-    public int getNumber (){
-        return number;
-    }
-    
     @Override
     public String toString() {
         return series + "-" + number;
