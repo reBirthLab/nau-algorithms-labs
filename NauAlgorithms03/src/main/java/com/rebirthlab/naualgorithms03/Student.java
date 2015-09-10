@@ -23,7 +23,7 @@
  */
 package com.rebirthlab.naualgorithms03;
 
-import com.rebirthlab.naualgorithms03.commons.RandomNamber;
+import com.rebirthlab.naualgorithms03.commons.RandomNumber;
 import com.rebirthlab.naualgorithms03.commons.Constants;
 
 /**
@@ -39,11 +39,11 @@ public class Student {
     private final String hobby;
 
     public Student() {
-        firstName = Constants.FIRST_NAMES.values()[RandomNamber.randInt(0, 9)].toString();
-        lastName = Constants.LAST_NAMES.values()[RandomNamber.randInt(0, 9)].toString();
-        studentClass = RandomNamber.randInt(1, 5);
+        firstName = Constants.FIRST_NAMES.values()[RandomNumber.randInt(0, 9)].toString();
+        lastName = Constants.LAST_NAMES.values()[RandomNumber.randInt(0, 9)].toString();
+        studentClass = RandomNumber.randInt(1, 5);
         studentId = new StudentId();
-        hobby = Constants.HOBBIES.values()[RandomNamber.randInt(0, 1)].toString();
+        hobby = Constants.HOBBIES.values()[RandomNumber.randInt(0, 1)].toString();
     }
     
     public int getStudentClass(){
