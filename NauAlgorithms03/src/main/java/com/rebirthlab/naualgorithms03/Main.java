@@ -42,7 +42,7 @@ public class Main {
         tree.inOrderPrintAll(tree.getRoot());
 
         System.out.println();
-        System.out.println("Enter student class witch should be removed from the tree >>>");
+        System.out.println("Enter student class which should be removed from the tree >>>");
         do {
             System.out.print("Please enter a number beetween 1 and 5: ");
             while (!scanner.hasNextInt()) {
