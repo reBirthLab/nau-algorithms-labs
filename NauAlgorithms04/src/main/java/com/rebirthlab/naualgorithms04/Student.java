@@ -24,7 +24,7 @@
 package com.rebirthlab.naualgorithms04;
 
 import com.rebirthlab.naualgorithms04.commons.Constants;
-import com.rebirthlab.naualgorithms04.commons.RandomNamber;
+import com.rebirthlab.naualgorithms04.commons.RandomNumber;
 
 /**
  *
@@ -38,9 +38,9 @@ public class Student {
     private final StudentId studentId;
 
     public Student() {
-        firstName = Constants.FIRST_NAMES.values()[RandomNamber.randInt(0, 9)].toString();
-        lastName = Constants.LAST_NAMES.values()[RandomNamber.randInt(0, 9)].toString();
-        group = RandomNamber.randInt(100, 500);
+        firstName = Constants.FIRST_NAMES.values()[RandomNumber.randInt(0, 9)].toString();
+        lastName = Constants.LAST_NAMES.values()[RandomNumber.randInt(0, 9)].toString();
+        group = RandomNumber.randInt(100, 500);
         studentId = new StudentId();
     }
 

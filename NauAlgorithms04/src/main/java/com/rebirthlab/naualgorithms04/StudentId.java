@@ -24,7 +24,7 @@
 package com.rebirthlab.naualgorithms04;
 
 import com.rebirthlab.naualgorithms04.commons.Constants;
-import com.rebirthlab.naualgorithms04.commons.RandomNamber;
+import com.rebirthlab.naualgorithms04.commons.RandomNumber;
 
 /**
  *
@@ -36,8 +36,8 @@ public class StudentId {
     private final int number;
     
     public StudentId() {
-        series = Constants.SERIES.values()[RandomNamber.randInt(0, 4)].toString();
-        number = RandomNamber.randInt(100, 1000);
+        series = Constants.SERIES.values()[RandomNumber.randInt(0, 4)].toString();
+        number = RandomNumber.randInt(100, 1000);
     }
     
     @Override

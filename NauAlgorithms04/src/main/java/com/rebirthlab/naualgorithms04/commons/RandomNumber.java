@@ -29,7 +29,7 @@ import java.util.Random;
  *
  * @author Anastasiy Tovstik <anastasiy.tovstik@gmail.com>
  */
-public class RandomNamber {
+public class RandomNumber {
     private static final Random rand = new Random();
 
     public static int randInt(int min, int max) {
