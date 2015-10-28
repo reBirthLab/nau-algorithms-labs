@@ -80,6 +80,17 @@ public class BinaryTree {
         }
     }
 
+    public void preOrderPrintAll(Node currentNode) {
+        if (currentNode != null) {
+
+            System.out.println("[Node] " + currentNode.getObject().toString());
+
+            inOrderPrintAll(currentNode.getLeft());
+
+            inOrderPrintAll(currentNode.getRight());
+        }
+    }
+
     public boolean removeWithCriteria(Node currentNode, int studentClass, String hobby) {
         if (currentNode != null) {
 

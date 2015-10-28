@@ -35,10 +35,17 @@ public class Main {
 
         BinaryTree tree = new BinaryTree();
 
+        System.out.println("\nOriginal items order:");
         for (int i = 0; i < number; i++) {
-            tree.addNode(new Student());
+            Student st = new Student();
+            tree.addNode(st);
+            System.out.println(st);
         }
 
+        System.out.println("\nPre-order traversal:");
+        tree.preOrderPrintAll(tree.getRoot());
+        
+        System.out.println("\nIn-order traversal:");
         tree.inOrderPrintAll(tree.getRoot());
 
         System.out.println();
