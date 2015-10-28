@@ -40,41 +40,17 @@ public class StudentsArray {
         }
     }
 
-    public boolean interpolationSearchFor(int recordBookId, boolean hasMilitaryTraining) {
-        int counter = 0;
-        int low = 0;
-        int high = array.length - 1;
+    public boolean interpolationSearchFor(int recordBookId) {
+        Student[] sortedStudentsWithMilitaryTraining = sortWithMilitaryTrainingByStudentId();
 
-        while (low != high && array[low].hasMilitaryTraining() != array[high].hasMilitaryTraining()) {
-            int mid = (low + high) / 2;
+        if (sortedStudentsWithMilitaryTraining != null) {
+            int matchIndex = findElement(0, sortedStudentsWithMilitaryTraining.length - 1, recordBookId, sortedStudentsWithMilitaryTraining);
 
-            if (array[mid].hasMilitaryTraining() == hasMilitaryTraining
-                    && array[mid].getRecordBookId() == recordBookId) {
-                System.out.println("[Match] " + array[mid]);
-                System.out.println("Result found in " + counter + " steps.");
-                return true;
-            } else if (array[low].hasMilitaryTraining() != array[mid].hasMilitaryTraining()
-                    && array[mid].hasMilitaryTraining() == hasMilitaryTraining) {
-                ++low;
-            } else if (array[low].hasMilitaryTraining() == array[mid].hasMilitaryTraining()
-                    && array[mid].hasMilitaryTraining() != hasMilitaryTraining) {
-                ++low;
-            } else {
-                --high;
-            }
-            ++counter;
-        }
-
-        for (int i = low; i <= high; i++) {
-            if (array[i].hasMilitaryTraining() == hasMilitaryTraining
-                    && array[i].getRecordBookId() == recordBookId) {
-                System.out.println("[Match] " + array[i]);
-                System.out.println("Result found in " + counter + " steps.");
+            if (matchIndex != -1) {
+                System.out.println("[Match] " + sortedStudentsWithMilitaryTraining[matchIndex]);
                 return true;
             }
-            ++counter;
         }
-
         return false;
     }
 
@@ -83,6 +59,85 @@ public class StudentsArray {
             System.out.println("Index " + i + ": " + array[i]);
         }
         System.out.println();
+    }
+
+    private Student[] findStudentsWithMilitaryTraining() {
+        int counter = 0;
+        int firstIndex = -1;
+
+        for (int i = 0; i < array.length; i++) {
+            if (array[i].hasMilitaryTraining() && firstIndex == -1) {
+                firstIndex = i;
+            }
+
+            if (array[i].hasMilitaryTraining()) {
+                counter++;
+            }
+        }
+
+        if (counter != 0) {
+            Student[] selection = new Student[counter];
+
+            for (int j = 0; j < selection.length; j++) {
+                selection[j] = array[firstIndex];
+                firstIndex++;
+            }
+            return selection;
+        }
+        return null;
+    }
+
+    private Student[] sortWithMilitaryTrainingByStudentId() {
+
+        Student[] selection = findStudentsWithMilitaryTraining();
+
+        if (selection != null) {
+
+            Student temp;
+
+            for (int i = 0; i < selection.length; i++) {
+                for (int j = 1; j < (selection.length - i); j++) {
+                    if (selection[j - 1].getRecordBookId() > selection[j].getRecordBookId()) {
+                        temp = selection[j - 1];
+                        selection[j - 1] = selection[j];
+                        selection[j] = temp;
+                    }
+                }
+            }
+
+            System.out.println("Sorted list of students with military training:");
+            for (Student st : selection) {
+                System.out.println(st);
+            }
+            System.out.println();
+            
+            return selection;
+        }
+        return null;
+    }
+
+    private int findElement(int left, int right, int key, Student[] array) {
+        if (left > right) {
+            return -1;
+        }
+
+        int middle = left + (key - array[left].getRecordBookId()) * (right - left)
+                / (array[right].getRecordBookId() - array[left].getRecordBookId());
+
+        if (key == array[middle].getRecordBookId()) {
+            return middle;
+        }
+
+        if (left == right) {
+            return -1;
+        }
+
+        if (key < array[middle].getRecordBookId()) {
+            return findElement(left, middle - 1, key, array);
+        } else {
+            return findElement(middle + 1, right, key, array);
+        }
+
     }
 
     private boolean add(Student student) {

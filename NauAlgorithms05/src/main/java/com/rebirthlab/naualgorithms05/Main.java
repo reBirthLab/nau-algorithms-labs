@@ -52,7 +52,7 @@ public class Main {
         
         array.print();
         
-        System.out.println("Does student have a military training?");
+        System.out.println("Does student with military training have the spicified Record book ID?");
         System.out.println("Enter student's Record book ID number >>>");
         do {
             System.out.print("Please enter a positive number: ");
@@ -65,7 +65,7 @@ public class Main {
         System.out.println();
         
         
-        if(!array.interpolationSearchFor(recordBookId, true)){
+        if(!array.interpolationSearchFor(recordBookId)){
             System.out.println("The student with Record book ID #" + recordBookId + " has no military training.");
         }  
     }
